@@ -12,6 +12,8 @@ public class BitcoinTest extends AbstractFakerTest {
         assertNotNull("Address should not be null.", address);
         assertFalse("Address should not be empty.", address.isEmpty());
         assertTrue("Address should start with '1' or '3'.", address.startsWith("1") || address.startsWith("3"));
+        assertTrue("Address length should be between 26 and 35 characters.",
+                address.length() >= 26 && address.length() <= 35);
     }
 
     @Test
@@ -20,6 +22,8 @@ public class BitcoinTest extends AbstractFakerTest {
         assertNotNull("Address should not be null.", address);
         assertFalse("Address should not be empty.", address.isEmpty());
         assertTrue("Address should start with 'm' or 'n'.", address.startsWith("m") || address.startsWith("n"));
+        assertTrue("Address length should be between 26 and 35 characters.",
+                address.length() >= 26 && address.length() <= 35);
     }
 
     @Test
