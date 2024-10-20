@@ -139,6 +139,7 @@ Fakers
 * Witcher
 * Yoda
 * Zelda
+* Bitcoin
 
 Usage with Locales
 -----

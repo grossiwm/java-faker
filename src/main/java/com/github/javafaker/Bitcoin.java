@@ -9,23 +9,24 @@ import java.util.Map;
 import java.util.Random;
 
 public class Bitcoin {
-    private static final String ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-    private static final int BASE = ALPHABET.length();
 
-    private static final Map<String, Integer> PROTOCOL_VERSIONS = new HashMap<String, Integer>() {{
+    private final String ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    private final int BASE = ALPHABET.length();
+
+    private final Map<String, Integer> PROTOCOL_VERSIONS = new HashMap<String, Integer>() {{
         put("main", 0);
         put("testnet", 111);
     }};
 
-    public static String address() {
+    public String address() {
         return addressFor("main");
     }
 
-    public static String testnetAddress() {
+    public String testnetAddress() {
         return addressFor("testnet");
     }
 
-    public static String generateTransactionHash() {
+    public String generateTransactionHash() {
         try {
             byte[] randomData = new byte[32];
             SecureRandom random = new SecureRandom();
@@ -47,7 +48,7 @@ public class Bitcoin {
         }
     }
 
-    private static String addressFor(String network) {
+    private String addressFor(String network) {
         Integer version = PROTOCOL_VERSIONS.get(network);
         if (version == null) {
             throw new IllegalArgumentException("Invalid network specified");
@@ -70,7 +71,7 @@ public class Bitcoin {
         return encodeBase58(fullAddress);
     }
 
-    private static byte[] calculateChecksum(byte[] data) {
+    private byte[] calculateChecksum(byte[] data) {
 
         try {
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
@@ -84,7 +85,7 @@ public class Bitcoin {
         }
     }
 
-    private static String encodeBase58(byte[] input) {
+    private String encodeBase58(byte[] input) {
         java.math.BigInteger lv = java.math.BigInteger.ZERO;
         for (int i = 0; i < input.length; i++) {
             int value = input[input.length - 1 - i] & 0xFF;
